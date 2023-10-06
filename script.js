@@ -30,12 +30,14 @@ let value = "";
 
 let mathValue;
 
+//querySelectorAll로 태그 button을 가져왔을 때 addEventListener가 함수가 아니라는 오류가 남
 buttonbutton.addEventListener("click", e => {
   e.preventDefault();
 
   const target = e.target;
-  if(target.id != ''){
+  if(target.id != ''){ //아이디가 없는 경우는 클릭이 안되게
     switch(target.id){
+      //숫자키 클릭했을 때..
       case "zerozero" :
         if(inputValue.length == 0){
           inputValue += "";
@@ -99,19 +101,22 @@ buttonbutton.addEventListener("click", e => {
         mathematical.value = inputValue;
         break;
 
-
+      //나중에는 ()로 바꿀 예정
+      //지금은 AC 기능
       case "smile" :
         inputValue = "";
         mathematical.value = inputValue;
         calculatingInput.innerHTML = 0;
         break;
-        
+      
+      //AC 기능
       case "clear" :
         inputValue = "";
         mathematical.value = inputValue;
         calculatingInput.innerHTML = 0;
         break;
 
+      //"%"를 클릭 했을 때
       case "remainder" :
         if(inputValue.includes("%")
             || inputValue.includes("/")
@@ -139,6 +144,7 @@ buttonbutton.addEventListener("click", e => {
         mathematical.value = inputValue;
         break;
 
+      //"/"를 클릭 했을 때
       case "division" :
         if(inputValue.includes("%")
             || inputValue.includes("/")
@@ -165,6 +171,7 @@ buttonbutton.addEventListener("click", e => {
         mathematical.value = inputValue;
         break;
 
+      //"*"를 클릭 했을 때
       case "Multiplication" :
         if(inputValue.includes("%")
             || inputValue.includes("/")
@@ -191,6 +198,7 @@ buttonbutton.addEventListener("click", e => {
         mathematical.value = inputValue;
         break;
       
+      //"-"를 클릭 했을 때
       case "Minus" :
         if(inputValue.includes("%")
             || inputValue.includes("/")
@@ -217,6 +225,7 @@ buttonbutton.addEventListener("click", e => {
         mathematical.value = inputValue;
         break;
     
+      //"+"를 클릭 했을 때
       case "addition" :
         if(inputValue.includes("%")
             || inputValue.includes("/")
@@ -243,10 +252,9 @@ buttonbutton.addEventListener("click", e => {
         mathematical.value = inputValue;
         break;
 
+      //"."를 클릭 했을 때
       case "decimalPoint" :
         let A = inputValue.split(/\%|\*|\/|\-|\+/)
-        console.log(A)
-
         if(inputValue.length == 0){
           inputValue += "0.";
         } 
@@ -259,9 +267,11 @@ buttonbutton.addEventListener("click", e => {
         mathematical.value = inputValue;
         break;
 
+      //"="를 클릭 했을 때
       case "enter" :
-        valuevalue(target);
+        valuevalue(target); //결과값 불러오는 함수
 
+        //우선순위 고려해서 만드는 중.. 아직 오류가 많음
         // const addsplit = inputValue.split("+");
         // let add = [];
         // let notAdd = [];
@@ -331,6 +341,7 @@ buttonbutton.addEventListener("click", e => {
   
 })
 
+//delete 기능
 deleteImg.addEventListener("click", e => {
   e.preventDefault();
   
@@ -341,6 +352,7 @@ deleteImg.addEventListener("click", e => {
 })
 
 
+//입력값 계산하는 함수
 function valuevalue (target) {
   let A = String(parseFloat(inputValue));
   let oper = inputValue.charAt(A.length);
