@@ -1,10 +1,6 @@
-const smile = document.querySelector("#smile");
-const clear = document.querySelector("#clear");
-
 const mathematical = document.querySelector(".mathematical");
 const calculatingInput = document.querySelector(".calculatingInput");
 const deleteImg = document.querySelector(".deleteImg");
-const buttonbutton = document.querySelector(".buttonbutton");
 const buttonQuery = document.querySelectorAll("button");
 
 let inputValue = "";
@@ -56,8 +52,13 @@ buttonQuery.forEach((element)=>{
 
       case "operator" : 
         const Ilength = inputValue.length - 1;
-        
-        if((inputValue.charAt(Ilength)) === "%" 
+        if (inputValue.includes("%")
+        || inputValue.includes("/")
+        || inputValue.includes("*")
+        || inputValue.includes("+")
+        || inputValue.charAt(0) != "-" && inputValue.includes("-")) {
+          valuevalue(e.target);
+        }else if((inputValue.charAt(Ilength)) === "%" 
         || (inputValue.charAt(Ilength)) === "/"
         || (inputValue.charAt(Ilength)) === "*"
         || (inputValue.charAt(Ilength)) === "-"
@@ -77,11 +78,8 @@ buttonQuery.forEach((element)=>{
 //delete 기능
 deleteImg.addEventListener("click", e => {
   e.preventDefault();
-  
   inputValue = inputValue.slice(0, -1);
   mathematical.value = inputValue;
-
-  console.log(inputValue);
 })
 
 
